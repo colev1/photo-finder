@@ -4,6 +4,7 @@
     <form>
       <input type="text" v-model="keyword"/>
       <button v-on:click="submitSearch"> submit </button>
+      <Photos :images="images" />
     </form>
   </div>
 </template>
@@ -11,9 +12,13 @@
 <script>
 import apiKey from './apiKey.js'
 import cleanPhotos from './helpers/cleanPhotos'
+import Photos from './components/Photos'
 
 export default {
   name: 'app',
+  components: {
+    Photos
+  },
   data(){
     return {
       keyword: '',
@@ -25,7 +30,6 @@ export default {
     e.preventDefault()
       const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=${apiKey}&query=${this.keyword}`)
       const result = await response.json()
-      // console.log(result)
       const cleanedPhotos = cleanPhotos(result.results)
       this.images = cleanedPhotos
     }

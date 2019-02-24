@@ -1,8 +1,9 @@
 const cleanPhotos = (photosInfo) => {
   return photosInfo.map(photo => {
+    console.log(photo)
     return {
       description: photo.description,
-      image: photo.urls.regular
+      image: photo.links.download
     }
   })
 }
