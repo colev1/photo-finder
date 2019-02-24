@@ -1,27 +1,29 @@
 <template>
   <div id="app">
-    <form>
       <h1> search for a photo </h1>
-      <input type="text" v-model="search"/>
+    <form>
+      <input type="text" v-model="keyword"/>
       <button v-on:click="submitSearch"> submit </button>
     </form>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
-// import Search from './components/Search.vue' 
+import apiKey from './apiKey.js'
 
 export default {
   name: 'app',
   data(){
     return {
-      search: '',
+      keyword: '',
     }
   },
   methods: {
-    submitSearch () {
-      console.log('th')
+    async submitSearch (e) {
+    e.preventDefault()
+      const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=${apiKey}&query=${this.keyword}`)
+      const result = await response.json()
+      console.log(result)
     }
   }
 }
