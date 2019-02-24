@@ -10,12 +10,14 @@
 
 <script>
 import apiKey from './apiKey.js'
+import cleanPhotos from './helpers/cleanPhotos'
 
 export default {
   name: 'app',
   data(){
     return {
       keyword: '',
+      images: []
     }
   },
   methods: {
@@ -23,7 +25,9 @@ export default {
     e.preventDefault()
       const response = await fetch(`https://api.unsplash.com/search/photos/?client_id=${apiKey}&query=${this.keyword}`)
       const result = await response.json()
-      console.log(result)
+      // console.log(result)
+      const cleanedPhotos = cleanPhotos(result.results)
+      this.images = cleanedPhotos
     }
   }
 }
