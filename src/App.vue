@@ -6,8 +6,15 @@
       <input type="text" v-model="keyword" placeholder="search"/>
       <button v-on:click="submitSearch"> submit </button>
     </form>
-    <div v-bind:class="{'show-results': !showImages}">
+    <div class ='results-container' v-bind:class="{'hidden': showImages=== false}">
+        <p>
       total images matching keyword: {{this.results.total}}
+        </p>
+        <p v-bind:class="{'show-results': showImages}">
+          <button>  previous page </button>
+          page {{this.page}} out of {{this.results.pages}}
+          <button>  next page </button>
+        </p>
     </div>
       <Loading v-if="loading" />
       <Photos v-else :images="images" />
@@ -48,6 +55,7 @@ export default {
       this.results = {total: result.total, pages: result.total_pages}
       this.loading = false
       this.showImages = true
+      this.keyword = ''
     }
   }
 }
