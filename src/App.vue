@@ -18,7 +18,7 @@
       <p>
         total images matching keyword: {{this.results.total}}
       </p>
-      <p v-bind:class="{'show-results': showImages}">
+      <div v-bind:class="{'show-results': showImages}">
         <button class="page-back-btn" v-on:click="pageBack">  
           <font-awesome-icon icon="arrow-left" class="search-icon" />
         </button>
@@ -26,7 +26,7 @@
         <button class="page-next-btn" v-on:click="pageForward">  
           <font-awesome-icon icon="arrow-right" class="search-icon" />
         </button>
-      </p>
+      </div>
     </div>
       <Loading v-if="loading" />
       <Photos v-else 
@@ -53,7 +53,7 @@ export default {
     return {
       keyword: '',
       images: [],
-      page: 1,
+      page: 0,
       loading: null,
       showImages: false,
       results: {},
@@ -66,15 +66,19 @@ export default {
     this.loading = true
     this.page = 1
       let url = `https://api.unsplash.com/search/photos/?client_id=${apiKey}&query=${this.keyword}&page=${this.page}`
-      const response = await fetch(url)
-      const result = await response.json()
-      const cleanedPhotos = cleanPhotos(result.results)
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        const cleanedPhotos = cleanPhotos(result.results)
       this.images = cleanedPhotos
       this.results = {total: result.total, pages: result.total_pages}
       this.loading = false
       this.showImages = true
       this.searchedTerm = this.keyword
       this.keyword = ''
+      } catch(error) {
+        console.log(error)
+      }
     },
     async fetchPictures(url) {
       const response = await fetch(url)
@@ -147,6 +151,7 @@ form {
   font-size: 32px;
 }
 
+
 input {
   background-color: unset;
   border: none;
@@ -167,5 +172,11 @@ button {
 
 button:hover {
   background-color: grey;
+}
+.show-results {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

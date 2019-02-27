@@ -1,7 +1,7 @@
 <template>
-  <p>
-    Loading
-  </p>
+  <h1>
+    Loading...
+  </h1>
 </template>
 
 
@@ -17,5 +17,8 @@ export default {
 </script>
 
 <style scoped>
-
+  h1 {
+    margin-top: 100px;
+    font-size: 60px;
+  }
 </style>
