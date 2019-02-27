@@ -70,24 +70,28 @@ export default {
         const response = await fetch(url)
         const result = await response.json()
         const cleanedPhotos = cleanPhotos(result.results)
-      this.images = cleanedPhotos
-      this.results = {total: result.total, pages: result.total_pages}
-      this.loading = false
-      this.showImages = true
-      this.searchedTerm = this.keyword
-      this.keyword = ''
+        this.images = cleanedPhotos
+        this.results = {total: result.total, pages: result.total_pages}
+        this.loading = false
+        this.showImages = true
+        this.searchedTerm = this.keyword
+        this.keyword = ''
       } catch(error) {
         console.log(error)
       }
     },
     async fetchPictures(url) {
-      const response = await fetch(url)
-      const result = await response.json()
-      const cleanedPhotos = cleanPhotos(result.results)
-      this.images = cleanedPhotos
-      this.results = {total: result.total, pages: result.total_pages}
-      this.loading = false
-      this.showImages = true
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        const cleanedPhotos = cleanPhotos(result.results)
+        this.images = cleanedPhotos
+        this.results = {total: result.total, pages: result.total_pages}
+        this.loading = false
+        this.showImages = true
+      } catch(err) {
+        console.log(err)
+      }
     },
     pageBack () {
       if(this.page > 1) {
@@ -160,6 +164,7 @@ input {
   font-size: 40px;
   margin: 20px;
 }
+
 button {
   background-color: #2c3e50;
   border-radius: 4px;
@@ -170,13 +175,16 @@ button {
   margin-left: 20px;
 };
 
-button:hover {
-  background-color: grey;
-}
 .show-results {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+button:hover {
+  border: solid 1px black;
+  background-color: white;
+  color: #2c3e50;
 }
 </style>
