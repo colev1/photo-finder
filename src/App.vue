@@ -70,24 +70,28 @@ export default {
         const response = await fetch(url)
         const result = await response.json()
         const cleanedPhotos = cleanPhotos(result.results)
-      this.images = cleanedPhotos
-      this.results = {total: result.total, pages: result.total_pages}
-      this.loading = false
-      this.showImages = true
-      this.searchedTerm = this.keyword
-      this.keyword = ''
+        this.images = cleanedPhotos
+        this.results = {total: result.total, pages: result.total_pages}
+        this.loading = false
+        this.showImages = true
+        this.searchedTerm = this.keyword
+        this.keyword = ''
       } catch(error) {
         console.log(error)
       }
     },
     async fetchPictures(url) {
-      const response = await fetch(url)
-      const result = await response.json()
-      const cleanedPhotos = cleanPhotos(result.results)
-      this.images = cleanedPhotos
-      this.results = {total: result.total, pages: result.total_pages}
-      this.loading = false
-      this.showImages = true
+      try {
+        const response = await fetch(url)
+        const result = await response.json()
+        const cleanedPhotos = cleanPhotos(result.results)
+        this.images = cleanedPhotos
+        this.results = {total: result.total, pages: result.total_pages}
+        this.loading = false
+        this.showImages = true
+      } catch(err) {
+        console.log(err)
+      }
     },
     pageBack () {
       if(this.page > 1) {
