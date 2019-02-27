@@ -1,29 +1,19 @@
 # photo-finder
 
-## Project setup
-```
-npm install
-```
+## Description
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+PhotoFinder is an application that allows users to search for images by keywords. Users can view the images on the page, and navigate to more pages of images. Users also have the ability to create a new search.
 
-### Compiles and minifies for production
-```
-npm run build
-```
+## Technologies Used
+* Javascript
+* Vue.js
 
-### Run your tests
-```
-npm run test
-```
+## Installing the repo
 
-### Lints and fixes files
-```
-npm run lint
-```
+`git clone https://github.com/colev1/photo-finder photo-finder`
+`cd photo-finder`
+`npm install`
+`npm run serve`
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+* you are now able to view the app in your browser
+
