@@ -1,9 +1,11 @@
 const cleanPhotos = (photosInfo) => {
+  let count=0
   return photosInfo.map(photo => {
-    console.log(photo)
+    count++
     return {
       description: photo.description,
-      image: photo.links.download
+      image: photo.links.download,
+      id: count
     }
   })
 }
