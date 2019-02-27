@@ -164,6 +164,7 @@ input {
   font-size: 40px;
   margin: 20px;
 }
+
 button {
   background-color: #2c3e50;
   border-radius: 4px;
@@ -174,13 +175,16 @@ button {
   margin-left: 20px;
 };
 
-button:hover {
-  background-color: grey;
-}
 .show-results {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+}
+
+button:hover {
+  border: solid 1px black;
+  background-color: white;
+  color: #2c3e50;
 }
 </style>

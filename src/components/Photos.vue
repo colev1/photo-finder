@@ -2,7 +2,8 @@
   <div>
     <div class="image-container" v-if="images.length > 0" 
     >
-      <div class="card" 
+      <div 
+        class="card" 
         v-for ='image in images' 
         v-bind:key='image.id' 
         @mouseover="shownCard = image.id"
@@ -71,6 +72,7 @@ button {
   font-size: 32px;
   margin-left: 20px
 }
+
 
 .description {
   z-index: 2;
