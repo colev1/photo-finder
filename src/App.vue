@@ -1,26 +1,39 @@
 <template>
   <div id="app">
-      <h1 v-bind:class="{'small-header': showImages}"> PhotoFindr </h1>
+      <h1 v-bind:class="{'small-header': showImages}"> 
+        PhotoFindr 
+      </h1>
       <h4> search for a photo by keyword.. </h4>
     <form v-bind:class="{'small-form': showImages}">
       <font-awesome-icon icon="search" class="search-icon" />
-      <input type="text" v-model="keyword" placeholder="search">
+      <input type="text" v-model="keyword" placeholder="search" />
       <button v-on:click="submitSearch"> 
         search
       </button>
     </form>
-    <div class ='results-container' v-bind:class="{'hidden': showImages=== false}">
-        <p>
-      total images matching keyword: {{this.results.total}}
-        </p>
-        <p v-bind:class="{'show-results': showImages}">
-          <button v-on:click="pageBack">  previous page </button>
+    <div 
+      class ='results-container' 
+      v-bind:class="{'hidden': showImages=== false}"
+    >
+      <p>
+        total images matching keyword: {{this.results.total}}
+      </p>
+      <p v-bind:class="{'show-results': showImages}">
+        <button class="page-back-btn" v-on:click="pageBack">  
+          <font-awesome-icon icon="arrow-left" class="search-icon" />
+        </button>
           page {{this.page}} out of {{this.results.pages}}
-          <button v-on:click="pageForward">  next page </button>
-        </p>
+        <button class="page-next-btn" v-on:click="pageForward">  
+          <font-awesome-icon icon="arrow-right" class="search-icon" />
+        </button>
+      </p>
     </div>
       <Loading v-if="loading" />
-      <Photos v-else :images="images" :results="results" :showImages="showImages"/>
+      <Photos v-else 
+        :images="images" 
+        :results="results" 
+        :showImages="showImages"
+      />
   </div>
 </template>
 
@@ -95,19 +108,18 @@ export default {
 
 
 #app {
-  /* font-family: 'Avenir', Helvetica, Arial, sans-serif; */
-  font-family: 'Quicksand', sans-serif;
-  -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
+  -webkit-font-smoothing: antialiased;
   align-items: center;
+  background-color: #2c3e50;
+  color: white;
   display: flex;
   flex-direction: column;
-  background-color: #2c3e50;
+  font-family: 'Quicksand', sans-serif;
+  height: 102vh;
   margin-top: -10px;
   padding: 0;
-  color: white;
-  height: 102vh;
+  text-align: center;
 }
 
 h1 {
@@ -122,10 +134,6 @@ form {
   width: 90vw;
 }
 
-.results-container {
-
-}
-
 .hidden {
   display: none
 }
@@ -136,28 +144,25 @@ form {
 }
 
 .search-icon {
-  /* position: relative; */
-  /* right: 10px; */
   font-size: 32px;
 }
 
 input {
+  background-color: unset;
+  border: none;
+  color: white;
   font-family: 'Quicksand', sans-serif;
   font-size: 40px;
-  border: none;
-  background-color: unset;
   margin: 20px;
-  color: white;
-
 }
 button {
+  background-color: #2c3e50;
+  border-radius: 4px;
+  border: solid white 1px;  
+  color: white;
   font-family: 'Quicksand', sans-serif;
   font-size: 32px;
   margin-left: 20px;
-  color: white;
-  background-color: #2c3e50;
-  border: solid white 1px;  
-  border-radius: 4px;
 };
 
 button:hover {
