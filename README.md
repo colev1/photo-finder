@@ -10,10 +10,10 @@ PhotoFinder is an application that allows users to search for images by keywords
 
 ## Installing the repo
 
-`git clone https://github.com/colev1/photo-finder photo-finder`
-`cd photo-finder`
-`npm install`
-`npm run serve`
+* `git clone https://github.com/colev1/photo-finder photo-finder`
+* `cd photo-finder`
+* `npm install`
+* `npm run serve`
 
 * you are now able to view the app in your browser
 
